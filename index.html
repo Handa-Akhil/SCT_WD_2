@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Stopwatch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <div id="options-screen" class="screen active">
+            <h2>Choose Your Stopwatch Style</h2>
+            <div class="options-grid">
+                <button class="style-option" data-style="simple">
+                    <span class="emoji">⏱️</span>
+                    <h3>Simple Stopwatch</h3>
+                </button>
+                <button class="style-option" data-style="flip">
+                    <span class="emoji">📖</span>
+                    <h3>Flip-Digit Stopwatch</h3>
+                </button>
+                <button class="style-option" data-style="fancy">
+                    <span class="emoji">✨</span>
+                    <h3>Fancy Animated Stopwatch</h3>
+                </button>
+            </div>
+        </div>
+
+        <div id="stopwatch-container" class="stopwatch-container screen">
+            <div id="simple-stopwatch" class="stopwatch-style" style="display:none;">
+                <div class="clock-face">
+                    <div class="timer-display">00:00:00</div>
+                </div>
+            </div>
+
+            <div id="flip-stopwatch" class="stopwatch-style" style="display:none;">
+                <div class="timer-display flip-timer">
+                    <div class="digit-group" id="minutes-flip">
+                        <div class="digit-container">
+                            <div class="card"><div class="front">0</div><div class="back">0</div></div>
+                        </div>
+                        <div class="digit-container">
+                            <div class="card"><div class="front">0</div><div class="back">0</div></div>
+                        </div>
+                    </div>
+                    <span class="separator">:</span>
+                    <div class="digit-group" id="seconds-flip">
+                        <div class="digit-container">
+                            <div class="card"><div class="front">0</div><div class="back">0</div></div>
+                        </div>
+                        <div class="digit-container">
+                            <div class="card"><div class="front">0</div><div class="back">0</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="fancy-stopwatch" class="stopwatch-style" style="display:none;">
+                <div class="timer-display fancy-timer">
+                    <div class="fancy-group">
+                        <span class="fancy-digit">0</span>
+                        <span class="fancy-digit">0</span>
+                    </div>
+                    <span class="separator">:</span>
+                    <div class="fancy-group">
+                        <span class="fancy-digit">0</span>
+                        <span class="fancy-digit">0</span>
+                    </div>
+                    <span class="separator">:</span>
+                    <div class="fancy-group">
+                        <span class="fancy-digit">0</span>
+                        <span class="fancy-digit">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button id="startPauseBtn">Start</button>
+                <button id="lapBtn" style="display:none;">Lap</button>
+                <button id="resetBtn">Reset</button>
+                <button id="backBtn">Back to Menu</button>
+            </div>
+            <div class="time-lapse-controls">
+                <button class="time-lapse-btn" data-lapse-duration="1">1s/sec</button>
+                <button class="time-lapse-btn" data-lapse-duration="10">10x</button>
+                <button class="time-lapse-btn" data-lapse-duration="60">60x</button>
+                <button class="time-lapse-btn" data-lapse-duration="3600">60min/sec</button>
+            </div>
+            <ul id="lapsList" style="display:none;"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+/* Background and Layout */
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    background: url('trigji.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* dark overlay */
+    z-index: -1;
+}
+
+.main-container {
+    position: relative;
+    z-index: 10;
+    width: 90%;
+    max-width: 600px;
+}
+
+/* Screens and Options */
+.screen {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    text-align: center;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.screen:not(.active) {
+    display: none;
+}
+
+#options-screen h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.options-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.style-option {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid transparent;
+    border-radius: 15px;
+    color: #fff;
+    padding: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, border-color 0.3s;
+}
+
+.style-option:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    border-color: #fff;
+}
+
+.style-option .emoji {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.style-option h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+/* Stopwatch Containers */
+.stopwatch-container {
+    text-align: center;
+}
+
+.clock-face {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.timer-display {
+    font-size: 3rem;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    color: #fff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+}
+
+#startPauseBtn { background-color: #4CAF50; }
+#startPauseBtn.pause { background-color: #f44336; }
+#resetBtn { background-color: #2196F3; }
+#backBtn { background-color: #607D8B; }
+#lapBtn { background-color: #FFC107; }
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.time-lapse-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.time-lapse-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.time-lapse-btn.active {
+    background-color: #fff;
+    color: #333;
+    border-color: #fff;
+}
+
+#lapsList {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+#lapsList li {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    font-family: monospace;
+}
+
+#lapsList li:last-child {
+    border-bottom: none;
+}
+
+/* Flip Animation */
+.timer-display.flip-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 0 auto;
+    perspective: 500px;
+}
+
+.digit-group { position: relative; display: flex; }
+.digit-container {
+    width: 2.5rem;
+    height: 4rem;
+    margin: 0 2px;
+    position: relative;
+}
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out;
+}
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+}
+.back {
+    transform: rotateX(180deg);
+}
+.card.flipped {
+    transform: rotateX(-180deg);
+}
